@@ -128,7 +128,7 @@ ACTOR Rocket2 Replaces Rocket
 		Loop
 	
 	SpawnUnderwater:
-	    TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+	    TNT1 A 0 A_Gravity
 		TNT1 A 0 A_SpawnItem("RocketFlare",-20,0)
 	    TNT1 A 0 A_CustomMissile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180))
 	    Goto Spawn
@@ -300,7 +300,7 @@ ACTOR GrenadeMissile
     Gravity 0.7
     
 	+SKYEXPLODE
-	+DOOMBOUNCE
+	BounceType "Doom"
 	+EXPLODEONWATER
 	DamageType Kick
     BounceFactor 0.5
@@ -353,7 +353,7 @@ ACTOR GrenadeMissile
 	Death.Cutless:
 	Death.Shrapnel:
 	    TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		TNT1 A 0 { bSHOOTABLE = false; }
         EXPL A 0 Radius_Quake (3, 16, 0, 15, 0)//(intensity, duration, damrad, tremrad, tid)
 		TNT1 A 0 A_SpawnItem ("BigRicoChet", 0, -30)
         TNT1 A 0 A_SpawnItemEx ("DetectFloorCrater",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
@@ -380,7 +380,7 @@ ACTOR GrenadeMissile
 
 ACTOR ShortGrenade: GrenadeMissile
 {
--DOOMBOUNCE
+BounceType "None"
 +SLIDESONWALLS
 	States
 	{
@@ -548,7 +548,7 @@ ACTOR GrenadeMissileHE
 
 ACTOR BouncingGrenadeHE: GrenadeMissileHE
 {
-    +DOOMBOUNCE
+    BounceType "Doom"
 	-EXPLODEONWATER
 	+CANBOUNCEWATER
 	+FORCERADIUSDMG
@@ -732,7 +732,7 @@ ACTOR GrenadeMissileFrag
 
 ACTOR BouncingGrenadeFrag: GrenadeMissileHE
 {
-    +DOOMBOUNCE
+    BounceType "Doom"
 	-EXPLODEONWATER
 	+CANBOUNCEWATER
 	+FORCERADIUSDMG
@@ -824,7 +824,7 @@ ACTOR BouncingGrenadeFrag: GrenadeMissileHE
 
 ACTOR BouncingGrenade: GrenadeMissile
 {
-    +DOOMBOUNCE
+    BounceType "Doom"
 	+EXPLODEONWATER
     BounceFactor 0.5
 	SeeSound "Weapons/GrenadeBounce"
@@ -1072,7 +1072,7 @@ ACTOR MarineGrenade
     +MISSILE
     +BLOODSPLATTER
 	+EXTREMEDEATH
-	+DOOMBOUNCE
+	BounceType "Doom"
 	BounceFactor 0.5
 	Damagetype "FriendBullet"
     Gravity 1.0
@@ -1155,18 +1155,18 @@ Damagetype "ExplosiveImpact"
 		TNT1 A 0 A_SpawnItem ("OldschoolRocketSmokeTrail2")
 		TNT1 A 0 A_CustomMissile ("OldschoolRocketSmokeTrail2", 2, 0, random (160, 210), 2, random (-30, 30))
 		
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+		TNT1 A 0 A_Gravity
 		Loop
 	
 	SpawnUnderwater:
-	    TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+	    TNT1 A 0 A_Gravity
 		TNT1 A 0 A_SpawnItem("RocketFlare",-20,0)
 	    TNT1 A 0 A_CustomMissile ("BUBULZ", 0, 0, random (0, 360), 2, random (0, 180))
 	    Goto Live
 	
 	Death:
         TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("FORCERADIUSDMG", 1)
+		TNT1 A 0 { bFORCERADIUSDMG = true; }
 		TNT1 A 1
 		TNT1 A 0 A_CustomMissile ("hUGEExplosionSpawner2", 30, 0, random (0, 360), 2, random(80, 90))
 		TNT1 AAA 0 A_CustomMissile ("lONGExplosionSpawner", 30, 0, random (0, 360), 2, 90)

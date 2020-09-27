@@ -66,8 +66,8 @@ ACTOR MagCaco : PainElemental replaces Cacodemon
         Stop
 	   
 	   ReplaceVanilla:
-		TNT1 A 0 A_ChangeFlag("THRUACTORS", 1)
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+		TNT1 A 0 { bTHRUACTORS = true; }
+		TNT1 A 0 { bCOUNTKILL = false; }
 		TNT1 A 0 A_SpawnItemEx ("Vanilla_MagCaco",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION |SXF_TRANSFERSPECIAL| SXF_TRANSFERAMBUSHFLAG ,0)
 		Stop
 	   
@@ -285,7 +285,7 @@ Actor FireShot
   Death:
 	TNT1 A 0 A_StopSound(1)
     FSHT A 0 Bright A_Explode(15, 60)
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+	TNT1 A 0 A_Gravity
 	TNT1 AAAA 0 A_SpawnItemEx ("ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
 	EXPL A 0 A_SpawnItem("ExplosionParticleSpawner")
 	FRFX ZZZ 0 BRIGHT A_CustomMissile ("BigNeoSmoke", 2, 0, random (0, 360), 2, random (0, 360))
@@ -344,8 +344,8 @@ Actor PyroBall
   RenderStyle Add
   Alpha 0.7
   -NoGravity
-  +DoomBounce
-  +LowGravity
+  BounceType "Doom"
+  Gravity 0.125
   +FireDamage
   +SeekerMissile
   Decal RevenantScorch
@@ -507,7 +507,7 @@ Actor RainCometNull
   Projectile
   +FloorClip
   +Ripper
-  +DoomBounce
+  BounceType "Doom"
   +CeilingHugger
   +DontHurtSpecies
   States
@@ -564,7 +564,7 @@ Actor WatcherSummonComet
   SpawnID 250
   Scale 1.25
   Projectile
-  +DoomBounce
+  BounceType "Doom"
   BounceFactor 0.6
   Gravity 0.5
   SeeSound "Afrit/CometFire"

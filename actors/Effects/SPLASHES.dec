@@ -80,7 +80,7 @@ Actor LiquidParticleX
   +Missile
   -NoGravity
   +DontSplash
-  +DoomBounce
+  BounceType "Doom"
   +FORCEXYBILLBOARD
   +THRUACTORS
   +CLIENTSIDEONLY
@@ -96,7 +96,7 @@ Actor LiquidParticleX
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -142,7 +142,7 @@ states
 		TNT1 A 16
 		TNT1 A 0 //A_SpawnItem("WaterSplashWaves")
 		TNT1 A 16
-		TNT1 A 0 A_ChangeFLag("SHOOTABLE", 0)
+		TNT1 A 0 { bSHOOTABLE = false; }
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 //A_SpawnItem("WaterSplashWaves")
 		TNT1 A 16 
@@ -199,7 +199,7 @@ states
 		TNT1 A 12
 		TNT1 A 0 A_SpawnItem("NukageSplashWaves")
 		TNT1 A 16
-		TNT1 A 0 //A_ChangeFLag("SHOOTABLE", 0)
+		TNT1 A 0 //{ bSHOOTABLE = false; }
 		TNT1 A 0 A_NoBlocking
 		TNT1 A 0 A_SpawnItem("NukageSplashWaves")
 		TNT1 A 16 
@@ -302,7 +302,7 @@ states
 		TNT1 A 12
 	TNT1 A 0 A_SpawnItem("BloodSplashWaves")
 	TNT1 A 16
-	TNT1 A 0 //A_ChangeFLag("SHOOTABLE", 0)
+	TNT1 A 0 //{ bSHOOTABLE = false; }
 	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_SpawnItem("BloodSplashWaves")
 	TNT1 A 16 
@@ -383,7 +383,7 @@ states
 		TNT1 A 12
 	TNT1 A 0 A_SpawnItem("SlimeSplashWaves")
 	TNT1 A 16
-	TNT1 A 0 //A_ChangeFLag("SHOOTABLE", 0)
+	TNT1 A 0 //{ bSHOOTABLE = false; }
 	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 A_SpawnItem("SlimeSplashWaves")
 	TNT1 A 16 
@@ -420,7 +420,7 @@ Actor SludgeParticleX
   +NoBlockMap
   -NoGravity
   +DontSplash
-  +DoomBounce
+  BounceType "Doom"
   +FORCEXYBILLBOARD
   +THRUACTORS
   +CLIENTSIDEONLY
@@ -436,7 +436,7 @@ Actor SludgeParticleX
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -532,7 +532,7 @@ Actor BUBULZ
   +DontSplash
   +FORCEXYBILLBOARD
   +CLIENTSIDEONLY
-  +DOOMBOUNCE
+  BounceType "Doom"
   RenderStyle Add
   Scale 0.5
   Speed 2
@@ -753,7 +753,7 @@ Actor LiquidParticleXSmall
   +NoBlockMap
   -NoGravity
   +DontSplash
-  +DoomBounce
+  BounceType "Doom"
   +FORCEXYBILLBOARD
   +THRUACTORS
   +NOINTERACTION
@@ -769,7 +769,7 @@ Actor LiquidParticleXSmall
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -792,7 +792,7 @@ Actor SlimeParticleXNEW
   +NoBlockMap
   -NoGravity
   +DontSplash
-  +DoomBounce
+  BounceType "Doom"
   +FORCEXYBILLBOARD
   +THRUACTORS
   +CLIENTSIDEONLY
@@ -807,7 +807,7 @@ Actor SlimeParticleXNEW
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -843,7 +843,7 @@ Actor BloodParticleXNEW
   +NoBlockMap
   -NoGravity
   +DontSplash
-  +DoomBounce
+  BounceType "Doom"
   +FORCEXYBILLBOARD
   +THRUACTORS
   +CLIENTSIDEONLY
@@ -858,7 +858,7 @@ Actor BloodParticleXNEW
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -895,7 +895,7 @@ Actor LavaParticleX
   +NoBlockMap
   -NoGravity
   +DontSplash
-  +DoomBounce
+  BounceType "Doom"
   +FORCEXYBILLBOARD
   +THRUACTORS
   +CLIENTSIDEONLY
@@ -910,7 +910,7 @@ Actor LavaParticleX
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -951,7 +951,7 @@ Actor WaterParticleX
   {
   Spawn:
 	  TNT1 A 1 
-	  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+	  TNT1 A 0 ClearBounce
 	  TNT1 A 1
 	  Goto Stand
  Stand:
@@ -974,7 +974,7 @@ Actor WaterParticleXFAster: WaterParticleX
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -989,7 +989,7 @@ Actor WaterParticleXSuperFast: WaterParticleX
   Speed 6
   Scale 1.2
   Mass 0
-  -DOOMBOUNCE
+  BounceType "None"
   -DONTSPLASH
   -NOBLOCKMAP
   -NOCLIP
@@ -998,7 +998,7 @@ Actor WaterParticleXSuperFast: WaterParticleX
   {
   Spawn:
   TNT1 A 1 
-  TNT1 A 0 A_ChangeFlag(DOOMBOUNCE, 0)
+  TNT1 A 0 ClearBounce
   TNT1 A 1
   Goto Stand
   Stand:
@@ -1040,7 +1040,7 @@ actor WaterSplashBase2
 	TNT1 A 10
 	TNT1 A 0 //A_SpawnItem("WaterSplashWaves")
 	TNT1 A 16
-	TNT1 A 0 //A_ChangeFLag("SHOOTABLE", 0)
+	TNT1 A 0 //{ bSHOOTABLE = false; }
 	TNT1 A 0 A_NoBlocking
 	TNT1 A 0 //A_SpawnItem("WaterSplashWaves")
 	TNT1 A 16 
@@ -1102,7 +1102,7 @@ actor WaterSplashBaseSmall
     TNT1 FFFF 0 A_CustomMissile ("WaterParticleX", 12, 0, random (0, 360), 2, random (50, 140))
 	TNT1 FFFF 0 A_CustomMissile ("WaterParticleXFaster", 12, 0, random (0, 360), 2, random (50, 140))
     SPSH HI 6
-	TNT1 A 0 A_ChangeFLag("SHOOTABLE", 0)
+	TNT1 A 0 { bSHOOTABLE = false; }
 	SPSH HI 6
 	TNT1 A 0 A_NoBlocking
     Stop

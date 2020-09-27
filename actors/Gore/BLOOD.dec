@@ -101,7 +101,7 @@ ACTOR TinyBlood
    +NOBLOCKMAP
    +FORCEXYBILLBOARD
         -EXPLODEONWATER
-+DOOMBOUNCE
+BounceType "Doom"
 BounceFactor 0.01
     States
     {
@@ -614,7 +614,7 @@ ACTOR CeilBloodLauncher: Brutal_FLyingBlood
 {
     +THRUACTORS
     +BLOODLESSIMPACT 
-	-DOOMBOUNCE
+	BounceType "None"
 damagetype Blood
  Speed 15
  Gravity 0.0
@@ -752,7 +752,7 @@ Projectile
 +SPAWNCEILING
 +CEILINGHUGGER
 +MOVEWITHSECTOR
--DOOMBOUNCE
+BounceType "None"
 +NOGRAVITY
 +DontSplash
 Scale 0.1
@@ -861,7 +861,7 @@ ACTOR CeilBloodLargeBloodSpawner: TinyBlood
 
 ACTOR BloodDripingFromCeiling: TinyBlood
 {
-+DOOMBOUNCE
+BounceType "Doom"
 +THRUACTORS
 +CLIENTSIDEONLY
 +SPAWNCEILING
@@ -875,12 +875,12 @@ BounceFactor 0.1
      Spawn:
        TNT1 A 0
 	   TNT1 A 0 A_Jump(230, "NoSpawn")
-       TNT1 A 0 //A_ChangeFlag("CEILINGHUGGER", 1)
+       TNT1 A 0 //{ bCEILINGHUGGER = true; }
 	   BLCD GGHHIIJJKKLLMMNNOO 1 ThrustThingZ(0,300,0,1)
-       TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
-       TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-       TNT1 A 0 A_ChangeFlag("DONTTHRUST", 0)
-       TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+       TNT1 A 0 { bCEILINGHUGGER = false; }
+       TNT1 A 0 A_Gravity
+       TNT1 A 0 { bDONTTHRUST = false; }
+       TNT1 A 0 { bCEILINGHUGGER = false; }
 	   BPDL A 0 ThrustThingZ(0,300,0,1)
        TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
         BLUD Z 500
@@ -891,7 +891,7 @@ BounceFactor 0.1
 
 ACTOR BloodDripingFromCeilingBig: TinyBlood
 {
-+DOOMBOUNCE
+BounceType "Doom"
 +THRUACTORS
 +CLIENTSIDEONLY
 +SPAWNCEILING
@@ -907,11 +907,11 @@ YScale 0.8
      Spawn:
        TNT1 A 0
 	   TNT1 A 0 A_Jump(160, "NoSpawn")
-       TNT1 A 0 //A_ChangeFlag("CEILINGHUGGER", 1)
+       TNT1 A 0 //{ bCEILINGHUGGER = true; }
 	   BLCD GGHHIIJJKKLLMMNNOO 1 ThrustThingZ(0,300,0,1)
-       TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
-       TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-       TNT1 A 0 A_ChangeFlag("DONTTHRUST", 0)
+       TNT1 A 0 { bCEILINGHUGGER = false; }
+       TNT1 A 0 A_Gravity
+       TNT1 A 0 { bDONTTHRUST = false; }
 	   BPDL A 0 ThrustThingZ(0,300,0,1)
        TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
         BLUD Z 500
@@ -1007,7 +1007,7 @@ game Doom
   renderstyle Translucent
   alpha 0.7
 Decal BrutalBloodSplat
- +LOWGRAVITY
+ Gravity 0.125
  +NOTELEPORT
  +NOBLOCKMAP
 +NOCLIP
@@ -1279,7 +1279,7 @@ ACTOR PinkyHeadPiece : PB_TinyGibBase
     Decal BrutalBloodSplat
     +CLIENTSIDEONLY
 	BounceFactor 0.4
-	+DOOMBOUNCE
+	BounceType "Doom"
     +NOBLOCKMAP
     +MISSILE
     +NOTELEPORT
@@ -1318,7 +1318,7 @@ ACTOR VoidSpectreHeadPiece : PB_TinyGibBase
     Decal GreenBloodSpot
     +CLIENTSIDEONLY
 	BounceFactor 0.4
-	+DOOMBOUNCE
+	BounceType "Doom"
     +NOBLOCKMAP
     +MISSILE
     +NOTELEPORT
@@ -1358,7 +1358,7 @@ ACTOR XDeathVoidSpectreEyeball : PB_TinyGibBase
     Decal GreenBloodSpot
     +CLIENTSIDEONLY
 	BounceFactor 0.4
-	+DOOMBOUNCE
+	BounceType "Doom"
     +NOBLOCKMAP
     +MISSILE
     +NOTELEPORT
@@ -1399,7 +1399,7 @@ ACTOR XDeathDaedabusEyeball : PB_TinyGibBase
     Decal GreenBloodSpot
     +CLIENTSIDEONLY
 	BounceFactor 0.4
-	+DOOMBOUNCE
+	BounceType "Doom"
     +NOBLOCKMAP
     +MISSILE
     +NOTELEPORT
@@ -1440,7 +1440,7 @@ ACTOR BaronHeadPiece : PB_TinyGibBase
     Decal BrutalBloodSplat
     +CLIENTSIDEONLY
 	BounceFactor 0.4
-	+DOOMBOUNCE
+	BounceType "Doom"
     +NOBLOCKMAP
     +MISSILE
     +NOTELEPORT
@@ -2731,7 +2731,7 @@ ACTOR MancubusEyeballs //Eyeballs
     Decal BrutalBloodSplat
     +CLIENTSIDEONLY
 	BounceFactor 0.5
-	+DOOMBOUNCE
+	BounceType "Doom"
 	+MISSILE
     +NOBLOCKMAP
     +NOTELEPORT
@@ -2773,7 +2773,7 @@ ACTOR VolcabusEyeballs
     Decal BrutalBloodSplat
     +CLIENTSIDEONLY
 	BounceFactor 0.5
-	+DOOMBOUNCE
+	BounceType "Doom"
 	+MISSILE
     +NOBLOCKMAP
     +NOTELEPORT

@@ -27,8 +27,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		stop
 		
 	ReplaceVanilla:
-		TNT1 A 0 A_ChangeFlag("THRUACTORS", 1)
-		TNT1 A 0 A_ChangeFlag("COUNTKILL", 0)
+		TNT1 A 0 { bTHRUACTORS = true; }
+		TNT1 A 0 { bCOUNTKILL = false; }
 		TNT1 A 0 A_SpawnItemEx ("Vanilla_DNImpVariant3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION |SXF_TRANSFERSPECIAL| SXF_TRANSFERAMBUSHFLAG ,0)
 		Stop
 	
@@ -163,10 +163,10 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 	Goto SeeContinue
 	
 	CeilingLatch:
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY", 1)
-	TNT1 A 0 A_ChangeFlag("THRUSPECIES", 1)
-//	TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 1)
-	TNT1 A 0 A_ChangeFlag("NOVERTICALMELEERANGE", 1)
+	TNT1 A 0 A_NoGravity
+	TNT1 A 0 { bTHRUSPECIES = true; }
+//	TNT1 A 0 { bCEILINGHUGGER = true; }
+	TNT1 A 0 { bNOVERTICALMELEERANGE = true; }
 	TNT1 A 0 A_GiveInventory ("IsOnCeiling", 1)
 	4M40 HHHHHHHH 1 ThrustThingZ(0,500,0,1)
 	Goto CeilingCrawl
@@ -244,8 +244,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 	CeilingDrop:
 		TNT1 AAA 0
 		TNT1 A 0 A_TakeInventory ("IsOnCeiling")
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)//CEILINGHUGGER
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity//CEILINGHUGGER
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		4M40 DCBA 1 A_FaceTarget
 	CeilingDropping:
 		T41R C 1 A_JumpIf (momz == 0, "CeilingLanding")
@@ -307,9 +307,9 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 	CeilingPounce:
 		TNT1 AAA 0
 		TNT1 A 0 A_TakeInventory ("IsOnCeiling")
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)//CEILINGHUGGER
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
-		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
+		TNT1 A 0 A_Gravity//CEILINGHUGGER
+		TNT1 A 0 { bCEILINGHUGGER = false; }
+		TNT1 A 0 { bTHRUSPECIES = false; }
 		TNT1 A 0 A_Recoil (-18)
 		TNT1 A 0 A_FaceTarget
 		TNT1 A 0 A_PlaySound("weapons/fistwhoosh")
@@ -467,9 +467,9 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		Goto SeeContinue
 		
     Pain:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bTHRUSPECIES = false; }
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_JumpIfInventory("IsOnCeiling", 1, "PainCanFallFromCeiling")
 		TNT1 D 0 A_SpawnItem("HeadshotTarget4", 12, 48,0)
 		TNT1 A 0 A_SpawnItem ("LegTargetBase", 10)
@@ -479,9 +479,9 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		Goto SeeContinue
 		
 	Pain.Melee:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bTHRUSPECIES = false; }
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0
 		TRO4 H 2
 		TNT1 A 0 A_JumpIfInventory ("SKImp", 1, "GotoStealthKill")
@@ -490,8 +490,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		
     Pain.head:
 	Pain.minorhead:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_JumpIfInventory("IsOnCeiling", 1, "PainCanFallFromCeiling")
 		TNT1 D 0 A_SpawnItem("HeadshotTarget10", 12, 48,0)
 		TNT1 A 0 A_TakeInventory("SKImp", 1)
@@ -513,8 +513,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 	Pain.Explosive:
 	Pain.ExtremePunches:
 		TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_Pain
 		TNT1 A 0 A_JumpIfInventory ("IsDown", 1, "Pain")
 		TNT1 A 0 A_TakeInventory("SKImp", 1)
@@ -525,8 +525,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		
 	Pain.Kick:
 		TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		T4DI A 1 A_Pain
 		TNT1 A 0 A_GiveInventory("IsDown", 1)
 		TNT1 A 0 ThrustThingZ(0,20,0,1)
@@ -536,8 +536,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		Goto FallingAfterImpact			
 		
 	PainCanFallFromCeiling:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_TakeInventory ("IsOnCeiling")
 	FallingAfterImpact:
 		T4DI B 1 A_GiveInventory ("FallingHeight", 1)
@@ -553,24 +553,24 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		TNT1 A 0 A_SpawnItem("SmallUnderwaterExplosion")
 		TNT1 A 0 A_JumpIf(waterlevel == 2, "Swim")
 		TNT1 A 0 A_JumpIf(waterlevel == 3, "Swim")
-		TNT1 A 0 A_ChangeFlag("GHOST", 1)
-		TNT1 A 0 A_ChangeFlag("NOPAIN", 0)
-		TNT1 A 0 A_ChangeFlag("SOLID", 0)
-		TNT1 A 0 A_ChangeFlag("FORCEXYBILLBOARD", 1)
+		TNT1 A 0 { bGHOST = true; }
+		TNT1 A 0 { bNOPAIN = false; }
+		TNT1 A 0 { bSOLID = false; }
+		TNT1 A 0 { bFORCEXYBILLBOARD = true; }
 		TNT1 A 0 A_GiveInventory("ISDOWN", 1)
 		TNT1 A 0 A_JumpIfInventory ("FallingHeight", 6, "FallingDie")
 		T4DI CCCCCCCC 5 A_JumpIf(momz < 0, "FallingAfterImpact")
-		TNT1 A 0 A_ChangeFlag("SOLID", 1)
+		TNT1 A 0 { bSOLID = true; }
 		TNT1 A 0 A_TakeInventory("ISDOWN", 1)
-		TNT1 A 0 A_ChangeFlag("FORCEXYBILLBOARD", 0)
+		TNT1 A 0 { bFORCEXYBILLBOARD = false; }
 		TNT1 A 0 A_TakeInventory("FallingHeight", 100)
 		TNT1 A 0 A_TakeInventory("IsDown", 1)
 		T4DI DE 7
 		Goto SeeContinue		
 		
 	PainHurt:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_TakeInventory("SKImp", 1)
 		TNT1 D 0 A_SpawnItem("HeadshotTarget4", 12, 48,0)
 		TRO4 H 1
@@ -578,8 +578,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		Goto SeeContinue
 
 	Pain.BlackHole:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		T4DI A 1 A_Pain
 		TNT1 A 0 A_GiveInventory("IsDown", 1)
 		TNT1 A 0 ThrustThingZ(0,6,0,1)
@@ -598,9 +598,9 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		
 	Pain.Stun:
 		TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bTHRUSPECIES = false; }
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_SpawnItemEx ("StunElectrocute", random (-4, 4), random (-4, 4),  random (16, 32), 0, 0)
 		TRO4 H 1 A_Pain
 		TRO4 HHHHHHHHHH 3 A_SpawnItemEx ("StunElectrocute", random (-12, 12), random (-12, 12),  random (16, 52), 0, 0)
@@ -630,8 +630,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		
 	Death:
 		TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_JumpIfInventory("IsJumping", 1, "DeathJump")
 		TNT1 A 0 A_Jump(32, "Death.Arm")
 		TNT1 A 0 A_Jump(24,"DeathNoGuts")
@@ -670,9 +670,9 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 		Stop
     
 	Death.Plasma: Death.Plasma2:
-			TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-			TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+			TNT1 A 0 A_Gravity
+			TNT1 A 0 { bTHRUSPECIES = false; }
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_Jump(96, "OtherPlasmaDeath")
 		TNT1 A 0 A_Stop
 		TNT1 A 0 A_PlaySound("plasmaflesh")
@@ -717,8 +717,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 	 Death.fire:
 	Death.Flames:
 	Death.Burn:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_JumpIfInTargetInventory("HasIncendiaryWeapon",1,"Death.Incinerate")
 		TNT1 A 0 A_Scream
         TNT1 A 0 A_NoBlocking
@@ -727,8 +727,8 @@ Actor DNImpVariant3 : Imp Replaces DoomImp
 	
 	Death.Leg:
 		TNT1 A 0
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_JumpIfInventory("IsJumping", 1, "Death.LegInTheAir")
 		TNT1 A 0 A_CustomMissile ("XDeathImpLeg", 35, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_CustomMissile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160))
@@ -796,7 +796,7 @@ ACTOR NewImpBall: FireBall_
 		Loop
 	
 	Death:
-		TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+		TNT1 A 0 { bSHOOTABLE = false; }
 	    TNT1 A 0 A_StopSound(1)
 		//TNT1 A 0 A_SpawnItem("SuperExpensiveParticleSpawner")
 		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "DeathCheap")
@@ -815,7 +815,7 @@ ACTOR NewImpBall: FireBall_
 		Stop
 		
 	XDeath:
-	    TNT1 A 0 A_ChangeFlag("SHOOTABLE", 0)
+	    TNT1 A 0 { bSHOOTABLE = false; }
 	    TNT1 A 0 A_StopSound(1)
 		//TNT1 A 0 A_SpawnItem("SuperExpensiveParticleSpawner")
 		TNT1 A 0 A_JumpIfInventory("lowgraphicsmode", 1, "DeathCheap")
@@ -1239,8 +1239,8 @@ ACTOR DyingImpVar32 : SwitchableDecoration
 		Stop
 		
 	Death.Arm:
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
+		TNT1 A 0 A_Gravity
+		TNT1 A 0 { bCEILINGHUGGER = false; }
 		TNT1 A 0 A_CustomMissile ("XDeathImpArm", 35, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_Scream
 		TNT1 A 0 A_NoBlocking
