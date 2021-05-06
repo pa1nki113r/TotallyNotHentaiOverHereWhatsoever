@@ -544,7 +544,7 @@ Actor TankStep: FootStep
 			TNT1 A 0 A_JumpIfInventory("IsOverSludge", 1, "XDeath")
 			TNT1 A 0 A_JumpIfInventory("IsOverNukage", 1, "XDeath")
 			TNT1 A 0 A_JumpIfInventory("IsOverLava", 1, "XDeath")
-			TNT1 A 0 A_playsound("floorhard")
+			TNT1 A 0 A_StartSound("floorhard")
 			TNT1 A 1
 			TNT1 A 6
             Stop
@@ -1329,19 +1329,19 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 		
 	SayOneLiner:
 		MARN A 1
-		NULL A 0 A_PlaySound("ONELIN", 2)
+		NULL A 0 A_StartSound("ONELIN", 2)
 		NULL A 0 A_TakeInventory("oneliner", 1)
 		Goto StandStillLoop
 	
 	AdvancedTaunt:
 		MARN A 1
-		NULL A 0 A_PlaySound("TAUNT0", 2)
+		NULL A 0 A_StartSound("TAUNT0", 2)
 		NULL A 0 A_TakeInventory("advtaunting", 1)
 		Goto StandStillLoop
 	
 	FistTaunt:
 		NULL A 0
-		NULL A 0 A_PlaySound("MTAUN", 2)
+		NULL A 0 A_StartSound("MTAUN", 2)
 		NULL A 0 A_TakeInventory("advtaunting", 1)
 		Goto StandStillLoop
 	
@@ -1509,7 +1509,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
         NULL A 0 //ACS_Execute(577, 0, 0, 0, 0)
         NULL A 0 //ACS_Execute(530, 0, 0, 0, 0)
 	    NULL A 0 A_JumpIfInventory("FistsSelected", 1, "PainWfist")
-       // NULL A 0 A_PlaySound("PAIN1", 2)
+       // NULL A 0 A_StartSound("PAIN1", 2)
 		TNT1 A 0 A_JumpIfInTargetInventory("EnemyIsArchvile", 1, "Pain.ArchvileAttack")
 		TNT1 AA 0
 		TNT1 A 0 A_JumpIfInventory("GoFatality", 1, "FatalityChecker")
@@ -1520,7 +1520,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 		
 	FemalePain:	
 		TNT1 A 0
-        NULL A 0 A_PlaySound("DSFPAIN", 2)
+        NULL A 0 A_StartSound("DSFPAIN", 2)
 		TNT1 AA 0
 		TNT1 A 0 A_JumpIfInTargetInventory("EnemyIsArchvile", 1, "Pain.ArchvileAttack")
 		PLAY G 4
@@ -1582,10 +1582,10 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 	TNT1 A 0 SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN)
 	TNT1 A 0 Thing_Stop(0)
 	TNT1 A 0 ACS_Execute(477, 0, 0, 0, 0)
-	TNT1 A 0 A_PlaySound("ICEBRK1")
+	TNT1 A 0 A_StartSound("ICEBRK1")
 	FZM1 A 45 A_JumpIfHealthLower(1, "DeathIce")
 	FZM1 A 2 A_JumpIfHealthLower(1, "DeathIce")
-	TNT1 A 0 A_PlaySound ("DSBOTTLE")
+	TNT1 A 0 A_StartSound("DSBOTTLE")
 	TNT1 A 0 ACS_ExecuteAlways(171, 0, 0, 0, 0)//Stop Camera
 	TNT1 A 0 SetPlayerProperty(0,0,PROP_TOTALLYFROZEN)
 	Goto See
@@ -1596,7 +1596,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 	Death.Freeze:
 		TNT1 A 0 //a_JumpIfInventory("RevenantCurse", 1, "Revenant_Death")
 		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_PlaySound ("DSBOTTLE")
+		TNT1 A 0 A_StartSound("DSBOTTLE")
 		TNT1 AAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("XIceChunk1", 48, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("XIceChunk2", 48, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("XIceChunk3", 48, 0, random (0, 360), 2, random (40, 120))
@@ -1605,10 +1605,10 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 	
 	//Classic Death
 	FirstPersonDeath1:
-		TNT1 A 0 A_PlaysoundEx("MinorHeadshot", "Auto")
+		TNT1 A 0 A_StartSound("MinorHeadshot", CHAN_AUTO)
 		PD01 AABBCCDDEEFF 1 A_SetRoll(roll+4.0)
 		PD01 GGHHIIJJKKLLMMNNOOPP 1 A_SetRoll(roll-5.0)
-		TNT1 A 0 A_PlaySoundEx("BODYF","Auto")
+		TNT1 A 0 A_StartSound("BODYF", CHAN_AUTO)
 		PD01 OONNMMLLKKJJ 1 A_SetRoll(roll-5.0)
 		TNT1 A 0 A_GiveInventory("DeathFader")
 		PD01 J -1
@@ -1616,7 +1616,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 	
 	//Arm Blown Off
 	FirstPersonDeath2:
-		TNT1 A 0 A_PlaysoundEx("MinorHeadshot", "Auto")
+		TNT1 A 0 A_StartSound("MinorHeadshot", CHAN_AUTO)
 		PD02 AABBC 1 A_SetRoll(roll-5.0)
 		PD02 CDDEE 1 A_SetRoll(roll+5.0)
 		PD02 GGHHIIGGHH 1 {
@@ -1652,7 +1652,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 			A_SetRoll(roll-1.0);
 			}
 		PD02 JJKKLLMMNNOOPP 1 A_SetRoll(roll+2.0)
-		TNT1 A 0 A_PlaySoundEx("BODYF","Auto")
+		TNT1 A 0 A_StartSound("BODYF", CHAN_AUTO)
 		PD02 QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 1 A_CustomMissile ("Brutal_LiquidBlood2", 10, 0, random (0, 360), 2, random (60, 120))
 		TNT1 A 0 A_GiveInventory("DeathFader")
 		PD02 Q -1
@@ -1685,7 +1685,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 		Loop
 	FirstPersonDeath3_Splat:
 		NULL AAAAA 0 A_CustomMissile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160))
-		TNT1 A 0 A_PlaySoundEx("BODYF","Auto")
+		TNT1 A 0 A_StartSound("BODYF", CHAN_AUTO)
 		PD03 DDEEFFGG 1 A_SetRoll(roll+5.0)
 		PD03 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_CustomMissile ("Brutal_LiquidBlood2", 10, 0, random (0, 360), 2, random (60, 120))
 		TNT1 A 0 A_GiveInventory("DeathFader")
@@ -1750,7 +1750,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 		NULL AAA 0 A_CustomMissile ("MuchBlood", 50, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 A_Scream
         XPL5 A 10
-		NULL A 0 A_PlaySound("DSFDTHE")
+		NULL A 0 A_StartSound("DSFDTHE")
         XPL5 BCBCBCBC 10 A_CustomMissile ("MuchBlood", 25, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 A_NoBlocking
         XPL5 DE 7 A_CustomMissile ("MuchBlood", 15, 0, random (0, 360), 2, random (0, 160))
@@ -1801,7 +1801,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 			A_Overlay(66,"FirstPersonDeath4");
 			}
 		MARN A 0 A_GiveInventory("PlayerIsDead", 1)
-        NULL A 0 A_PlaySound("BIGSCREA")
+        NULL A 0 A_StartSound("BIGSCREA")
         NULL A 0 A_Takeinventory("Kicking",1)
         NULL A 0 //ACS_ExecuteAlways(477, 0, 0, 0, 0)//Start Camera
 		
@@ -1891,7 +1891,7 @@ ACTOR Doomer : PlayerPawnBase Replaces DoomPlayer
 		 NULL A 0 A_Scream
 		 NULL A 0 A_Stop
 		 NULL A 0 A_GiveInventory("ChainguyguyContinue", 1)
-		 NULL A 0 A_PlaySound("DSFDTHE")
+		 NULL A 0 A_StartSound("DSFDTHE")
 		 PLAY H 5
 		 NULL A 0 A_GiveInventory("ChainguyguyContinue", 1)
 		 PPOD A 0 A_SpawnItemEx("PlayerChaingunguyVictim", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION)
@@ -2119,7 +2119,7 @@ Death.Plasma: Death.Plasma2:
 		Stop
 	
     Crush:
-        NULL A 0 A_PlaySound("misc/xdeath4")
+        NULL A 0 A_StartSound("misc/xdeath4")
         CRS1 A 5
         CRS1 A -1
         Stop
@@ -2155,19 +2155,19 @@ Death.Plasma: Death.Plasma2:
         //////////////////////////////////////////////////////
         FTYZ AB 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
 		
-        NULL A 0  A_PlaySound("monsters/zombie/pain")
+        NULL A 0  A_StartSound("monsters/zombie/pain")
         FTYZ BC 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
         FTYZ DEF 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		
 		
-        NULL A 0 A_PlaySound("monsters/zombie/suffer", 3)
+        NULL A 0 A_StartSound("monsters/zombie/suffer", 3)
 		
 		//The actor ShakeShakeShake makes the screen shake near the player, improving the overal felling of the fatalities
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		FTYZ FG 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound ("misc/xdeath", 1)
+		NULL A 0 A_StartSound("misc/xdeath", 1)
 		FTYZ FG 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound ("misc/xdeath", 1)
+		NULL A 0 A_StartSound("misc/xdeath", 1)
 		FTYZ F 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		
 		
@@ -2180,7 +2180,7 @@ Death.Plasma: Death.Plasma2:
         NULL AA 0 A_CustomMissile ("Brutal_FlyingBlood", 50, 0, random (0, 360), 2, random (0, 160))
 		 
          TNT1 A 0 A_StopSound(3)
-		 NULL A 0 A_PlaySound ("misc/xdeath", 3)
+		 NULL A 0 A_StartSound ("misc/xdeath", 3)
 		 
 		 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		 NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
@@ -2224,7 +2224,7 @@ Death.Plasma: Death.Plasma2:
         NULL AA 0 A_CustomMissile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160))
         NULL AAAAAAAA 0 A_CustomMissile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160))
         FPZ2 C 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("imp/melee")
+		NULL A 0 A_StartSound("imp/melee")
         FPZ2 D 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
 		NULL AAAAA 0 A_CustomMissile ("Instestin2", 32, 0, random (0, 360), 2, random (0, 160))
 		NULL AAA 0 A_CustomMissile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160))
@@ -2234,7 +2234,7 @@ Death.Plasma: Death.Plasma2:
 		NULL A 0 ACS_Execute(582, 0, 0, 0, 0)
 		NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
 		FPZ2 EF 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("monsters/zombie/death")
+		NULL A 0 A_StartSound("monsters/zombie/death")
 		FPZ2 G 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
         //////////////////////////////////////////////////////
         NULL A 0 A_TakeInventory("ZombieManFatality2",1)
@@ -2258,15 +2258,15 @@ Death.Plasma: Death.Plasma2:
 		NULL A 0 ACS_ExecuteAlways(477, 0, 0, 0, 0)//Start Camera
 		FPZ3 BCDE 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
         XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-        NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
+        NULL A 0 A_StartSound("monsters/zombie/pain", 1)
 		FPZ3 FGGGG 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
         
 		FPZ3 HHHIIIIIIIIHJJJ 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL AA 0 A_CustomMissile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160))
         NULL AA 0 A_CustomMissile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90))
 		TNT1 A 0 A_SpawnItemEx("SplatteredSmall")
@@ -2275,8 +2275,8 @@ Death.Plasma: Death.Plasma2:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL AA 0 A_CustomMissile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160))
         NULL AA 0 A_CustomMissile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90))
 		
@@ -2285,15 +2285,15 @@ Death.Plasma: Death.Plasma2:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL AA 0 A_CustomMissile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160))
         NULL AA 0 A_CustomMissile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90))
 		FPZ3 MMMNNNNNNNMOOO 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL AA 0 A_CustomMissile ("XDeath1", 30, 0, random (0, 360), 2, random (0, 160))
        NULL AA 0 A_CustomMissile ("BloodMist", 5, 0, random (0, 360), 2, random (0, 160))
 		NULL AAAA 0 A_CustomMissile ("Brains1", 5, 0, random (0, 360), 2, random (0, 160))
@@ -2309,7 +2309,7 @@ Death.Plasma: Death.Plasma2:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-	    NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+	    NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160))
         NULL A 0 A_CustomMissile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90))
 		
@@ -2317,7 +2317,7 @@ Death.Plasma: Death.Plasma2:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 60, 0, random (0, 360), 2, random (0, 160))
         NULL A 0 A_CustomMissile ("BloodMistSmall", 5, 0, random (0, 360), 2, random (40, 90))
 		FPZ3 RP 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
@@ -2341,8 +2341,8 @@ FatalityZMan4:
         //////////////////////////////////////////////////////
         FPZ4 AB 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-        NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+        NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		FPZ4 CDEEE 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		FPZ4 FGH 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
         
@@ -2350,8 +2350,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("BloodmistSmall", 5, 0, random (0, 360), 2, random (0, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2362,8 +2362,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("BloodmistSmall", 5, 0, random (0, 360), 2, random (0, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2373,8 +2373,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("BloodmistSmall", 5, 0, random (0, 360), 2, random (0, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2385,8 +2385,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("BloodmistSmall", 5, 0, random (0, 360), 2, random (0, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2396,8 +2396,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("BloodmistSmall", 5, 0, random (0, 360), 2, random (0, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2409,8 +2409,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("monsters/zombie/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("monsters/zombie/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("Bloodmist", 5, 0, random (0, 360), 2, random (0, 90))
 		
@@ -2418,7 +2418,7 @@ FatalityZMan4:
 		NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         NULL AAA 0 A_CustomMissile ("PlayerFlyingBlood", 15, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2451,9 +2451,9 @@ FatalityZMan4:
         //////////////////////////////////////////////////////
 		FTYI ABB 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
 		FTYI CDEFG 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-        NULL A 0  A_PlaySound("imp/pain")
+        NULL A 0  A_StartSound("imp/pain")
         NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0)
-        NULL A 0 A_PlaySound("CLAP")
+        NULL A 0 A_StartSound("CLAP")
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		FTYI GGGGHHHHHHHHIIJJJJJJJJJJJ 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FTYI K 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
@@ -2496,7 +2496,7 @@ FatalityZMan4:
         NULL AAA 0 A_CustomMissile ("XDeath3", 60, 0, random (0, 360), 2, random (0, 160))
         NULL AAAAAAAAAA 0 A_CustomMissile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160))
 		FTBI BC 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-		NULL A 0  A_PlaySound("imp/die")
+		NULL A 0  A_StartSound("imp/die")
 		FTBI D 25 A_SetTics(25 / GetCVar("cl_fatalityspeed"))
 
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
@@ -2530,8 +2530,8 @@ FatalityZMan4:
         //////////////////////////////////////////////////////
         FTCI AB 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-        NULL A 0 A_PlaySound("imp/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+        NULL A 0 A_StartSound("imp/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		FTCI CDE 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		FTCI E 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
         
@@ -2540,8 +2540,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("imp/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("imp/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         TNT1 AA 0 A_CustomMissile ("BloodMistSmall", 2, 0, random (0, 360), 2, random (20, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2553,8 +2553,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("imp/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("imp/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         TNT1 AA 0 A_CustomMissile ("BloodMistSmall", 2, 0, random (0, 360), 2, random (20, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2566,8 +2566,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("imp/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("imp/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		TNT1 A 0 A_SpawnItemEx("SplatteredSmall", 0, 15)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         TNT1 AA 0 A_CustomMissile ("BloodMistSmall", 2, 0, random (0, 360), 2, random (20, 90))
@@ -2580,8 +2580,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("imp/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("imp/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		NULL A 0 A_CustomMissile ("XDeath1", 15, 0, random (0, 360), 2, random (0, 160))
         TNT1 AA 0 A_CustomMissile ("BloodMistSmall", 2, 0, random (0, 360), 2, random (20, 90))
 		NULL A 0 A_CustomMissile ("Teeth", 15, 0, random (0, 360), 2, random (0, 160))
@@ -2594,8 +2594,8 @@ FatalityZMan4:
         NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("imp/pain", 1)
-		NULL A 0 A_PlaySound("player/cyborg/fist", 4)
+		NULL A 0 A_StartSound("imp/pain", 1)
+		NULL A 0 A_StartSound("player/cyborg/fist", 4)
 		TNT1 A 0 A_SpawnItem("ImpHeadExplode", 0, 10)
 		FTCI L 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
 		FTCI J 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
@@ -2616,15 +2616,15 @@ FatalityZMan4:
         
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
-        FTYS A 6 A_PlaySound("grunt/pain")
+        FTYS A 6 A_StartSound("grunt/pain")
         FTYS BC 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("BURNZOM", 3)
+		NULL A 0 A_StartSound("BURNZOM", 3)
 
-        NULL A 0 A_PlaySound("misc/xdeath")
+        NULL A 0 A_StartSound("misc/xdeath")
         FTYS DE 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("misc/xdeath")
+		NULL A 0 A_StartSound("misc/xdeath")
 		FTYS DE 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("misc/xdeath")
+		NULL A 0 A_StartSound("misc/xdeath")
 		FTYS DEE 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		
 		NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -2633,7 +2633,7 @@ FatalityZMan4:
 		NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
 
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("misc/xdeath", 3)
+		NULL A 0 A_StartSound("misc/xdeath", 3)
 		NULL AAAA 0 A_CustomMissile ("XDeath1", 20, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AAAAAA 0 A_CustomMissile ("BloodMist", 30, 0, random (0, 360), 2, random (20, 90))
         FTYS FGHIIPPP 2 A_CustomMissile ("Blood", 1, 0, random (0, 360), 2, random (0, 160))
@@ -2658,9 +2658,9 @@ FatalityZMan4:
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         FTYS J 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-        FTYS J 1 A_PlaySound("BURNZOM")
+        FTYS J 1 A_StartSound("BURNZOM")
 		FTYS JJJJ 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-		FTYS J 1 A_PlaySound("grunt/death")
+		FTYS J 1 A_StartSound("grunt/death")
 		FTYS K 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -2693,13 +2693,13 @@ FatalityZMan4:
         //////////////////////////////////////////////////////
         FSP3 A 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
 		
-		FSP3 B 4 A_PlaySound("grunt/pain")
+		FSP3 B 4 A_StartSound("grunt/pain")
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
 		FSP3 CDE 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		FSP3 E 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
 		
 		FSP3 FG 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("grunt/death")		
+		NULL A 0 A_StartSound("grunt/death")		
 		XXXX A 0 A_CustomMissile ("ShakeYourAssMinor", 1, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
@@ -2712,7 +2712,7 @@ FatalityZMan4:
 		
         FSP3 HIIIIII 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 	   
-	   NULL A 0 A_PlaySound("weapons/sg")	
+	   NULL A 0 A_StartSound("weapons/sg")	
 	   XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
@@ -2745,13 +2745,13 @@ FatalityZMan4:
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         CFTA AAABCDE 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-          NULL A 0 A_PlaySound("commando/pain")
+          NULL A 0 A_StartSound("commando/pain")
 NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0)
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-          NULL A 0 A_PlaySound("CLAP")
+          NULL A 0 A_StartSound("CLAP")
         CFTA EFF 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
         CFTA GHIJK 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-          NULL A 0 A_PlaySound("commando/pain")
+          NULL A 0 A_StartSound("commando/pain")
 NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0)
 NULL A 0 A_CustomMissile ("ShakeShakeShake", 50, 0, random (0, 360), 2, random (0, 160))
 NULL A 0 A_CustomMissile ("GoreSound", 22, 0, random (0, 360), 2, random (0, 160))
@@ -2759,14 +2759,14 @@ NULL A 0 A_CustomMissile ("GoreSound", 22, 0, random (0, 360), 2, random (0, 160
 	    
         CFTA M 12 A_SetTics(12 / GetCVar("cl_fatalityspeed"))
         CFTA OPQR 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-         NULL A 0 A_PlaySound("commando/pain")
-          NULL A 0 A_PlaySound("commando/death")
+         NULL A 0 A_StartSound("commando/pain")
+          NULL A 0 A_StartSound("commando/death")
        CFTA R 12 A_SetTics(12 / GetCVar("cl_fatalityspeed"))
 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(582, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
-          NULL A 0 A_PlaySound("BURNZOM")
+          NULL A 0 A_StartSound("BURNZOM")
 NULL A 0 A_CustomMissile ("ShakeShakeShake", 50, 0, random (0, 360), 2, random (0, 160))
 		 NULL AAAAAA 0 A_CustomMissile ("CeilBloodLauncher", 40, 0, random (0, 360), 2, random (50, 130))
          NULL AAAA 0 A_CustomMissile ("XDeath1", 10, 0, random (0, 360), 2, random (0, 160))
@@ -2792,9 +2792,9 @@ NULL A 0 A_CustomMissile ("ShakeShakeShake", 50, 0, random (0, 360), 2, random (
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         CFTC A 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
-        CFTC A 1 A_PlaySound("BURNZOM")
+        CFTC A 1 A_StartSound("BURNZOM")
 		CFTC AAAA 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
-		CFTC B 1 A_PlaySound("commando/death")
+		CFTC B 1 A_StartSound("commando/death")
 		CFTC B 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -2828,9 +2828,9 @@ NULL AAAAAAAAAA 0 A_CustomMissile ("PlayerFlyingBlood", 60, 0, random (0, 360), 
         //////////////////////////////////////////////////////
         FDEM A 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 ACS_ExecuteAlways(477, 0, 0, 0, 0)//Start Camera
-        FDEM B 4 A_PlaySound("demon/melee")
+        FDEM B 4 A_StartSound("demon/melee")
         FDEM C 8 A_SetTics(8 / GetCVar("cl_fatalityspeed"))
-        FDEM C 1 A_PlaySound("demon/pain")
+        FDEM C 1 A_StartSound("demon/pain")
         FDEM CDCDCD 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -2861,7 +2861,7 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
         //////////////////////////////////////////////////////
 		FDEM J 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 ACS_ExecuteAlways(477, 0, 0, 0, 0)//Start Camera
-        FDEM J 5 A_PlaySound("demon/pain")
+        FDEM J 5 A_StartSound("demon/pain")
         FDEM J 9 A_SetTics(9 / GetCVar("cl_fatalityspeed"))
         FDEM K 7 A_SetTics(7 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
@@ -2894,15 +2894,15 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
         //////////////////////////////////////////////////////
 		FD2M A 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 ACS_ExecuteAlways(477, 0, 0, 0, 0)//Start Camera
-        FDEM J 0 A_PlaySound("demon/pain")
+        FDEM J 0 A_StartSound("demon/pain")
         FD2M A 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
 		
         FD2M B 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M C 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-NULL A 0 A_PlaySound("demon/pain")
-NULL A 0 A_PlaySound("player/cyborg/fist", 1)
+NULL A 0 A_StartSound("demon/pain")
+NULL A 0 A_StartSound("player/cyborg/fist", 1)
 NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M B 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
@@ -2912,8 +2912,8 @@ NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M C 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-NULL A 0 A_PlaySound("demon/pain")
-NULL A 0 A_PlaySound("player/cyborg/fist", 1)
+NULL A 0 A_StartSound("demon/pain")
+NULL A 0 A_StartSound("player/cyborg/fist", 1)
 NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M B 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
@@ -2923,8 +2923,8 @@ NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M C 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-NULL A 0 A_PlaySound("demon/pain")
-NULL A 0 A_PlaySound("player/cyborg/fist", 1)
+NULL A 0 A_StartSound("demon/pain")
+NULL A 0 A_StartSound("player/cyborg/fist", 1)
 NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M B 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
@@ -2934,8 +2934,8 @@ NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M C 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-NULL A 0 A_PlaySound("demon/pain")
-NULL A 0 A_PlaySound("player/cyborg/fist", 1)
+NULL A 0 A_StartSound("demon/pain")
+NULL A 0 A_StartSound("player/cyborg/fist", 1)
 NULL A 0 A_SpawnItem("Blood", 0, 20)
 		FD7M B 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 		FD2M B 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
@@ -2943,8 +2943,8 @@ NULL A 0 A_SpawnItem("Blood", 0, 20)
 		 
 		 FD2M AD 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-NULL A 0 A_PlaySound("demon/pain")
-NULL A 0 A_PlaySound("player/cyborg/fist", 1)
+NULL A 0 A_StartSound("demon/pain")
+NULL A 0 A_StartSound("player/cyborg/fist", 1)
 NULL A 0 A_SpawnItem("Blood", 0, 5)
 		 
 		 FD2M E 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
@@ -2972,15 +2972,15 @@ NULL A 0 A_SpawnItem("MeatDeath", 0, 1)
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         CACF ABC 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-        CACF D 4 A_PlaySound("misc/xdeath4")
-        CACF E 4 A_PlaySound("demon/pain")
-		TNT1 A 0 A_Playsound("EYEPULL", 2)
+        CACF D 4 A_StartSound("misc/xdeath4")
+        CACF E 4 A_StartSound("demon/pain")
+		TNT1 A 0 A_StartSound("EYEPULL", 2)
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
         NULL AAAAAAAAAAAAAAAAA 0 A_CustomMissile ("Blue_FlyingBloodTrail", 45, 0, random (0, 180), 2, random (0, 180))
        NULL AAAAAAAAAAAA 0 A_CustomMissile ("Blue_FlyingBloodTrail", 45, 0, random (0, 360), 2, random (0, 360))
         NULL AAA 0 A_CustomMissile ("Blue_Blood", 45, 0, random (0, 360), 2, random (0, 160))
         CACF EFGHII 4 A_CustomMissile ("Blue_Blood", 45, 0, random (0, 360), 2, random (0, 160))
-        CACF J 4 A_PlaySound("misc/xdeath2")
+        CACF J 4 A_StartSound("misc/xdeath2")
         CACF KLMMM 4 A_CustomMissile ("Blue_Blood", 15, 0, random (0, 360), 2, random (0, 160))
         //////////////////////////////////////////////////////
         NULL A 0 A_TakeInventory("GoFatality", 1)
@@ -2999,13 +2999,13 @@ XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         CA2F AB 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("demon/pain")
+		NULL A 0 A_StartSound("demon/pain")
         CA2F BCDEE 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
         CA2F F 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("demon/pain")
+		NULL A 0 A_StartSound("demon/pain")
         XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		CA2F F 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("misc/xdeath2")
+		NULL A 0 A_StartSound("misc/xdeath2")
 		CA2F FFFF 2 A_CustomMissile ("Blue_Blood", 25, 0, random (0, 180), 2, random (0, 180))
 		NULL AAAAA 0 A_CustomMissile ("CacoXDeath7", 25, 0, random (0, 360), 2, random (0, 160))
         CA2F GH 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
@@ -3035,10 +3035,10 @@ XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0
 		 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(582, 0, 0, 0, 0)
-        FREV C 4 A_PlaySound("skeleton/pain")
+        FREV C 4 A_StartSound("skeleton/pain")
         FREV D 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
         FREV EFGHIJJJKL 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-        FREV M 5 A_PlaySound("skeleton/sight")
+        FREV M 5 A_StartSound("skeleton/sight")
         FREV M 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
         FREV N 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
         FREV O 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
@@ -3071,7 +3071,7 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         FRE2 A 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
-		FRE2 A 5 A_PlaySound("skeleton/pain")
+		FRE2 A 5 A_StartSound("skeleton/pain")
 		FRE2 A 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		 NULL AAAAAA 0 A_CustomMissile ("CeilBloodLauncher", 40, 0, random (0, 360), 2, random (50, 130))
@@ -3106,9 +3106,9 @@ XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0
 NULL A 0 ACS_Execute(585, 0, 0, 0, 0)
         NULL A 0 A_CustomMissile ("Blood", 45, 0, random (0, 360), 2, random (0, 160))
         NULL AAAAAAA 0 A_CustomMissile ("Brutal_FlyingBloodTrail", 45, 0, random (0, 180), 2, random (0, 180))
-        FATF A 6 A_PlaySound("misc/xdeath4")
+        FATF A 6 A_StartSound("misc/xdeath4")
 		NULL A 0 A_CustomMissile ("Blood", 45, 0, random (0, 360), 2, random (0, 160))
-        FATF A 6 A_PlaySound("fatso/pain")
+        FATF A 6 A_StartSound("fatso/pain")
         FATF AA 6 A_CustomMissile ("Blood", 45, 0, random (0, 360), 2, random (0, 160))
 
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
@@ -3127,7 +3127,7 @@ NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		 NULL A 0 A_CustomMissile ("XDeath2", 50, 0, random (0, 360), 2, random (0, 160))
 		 NULL A 0 A_CustomMissile ("XDeath3", 50, 0, random (0, 360), 2, random (0, 160))
         FATF BCD 8 A_SetTics(8 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("fatso/pain")
+		NULL A 0 A_StartSound("fatso/pain")
 		FATF D 50 A_SetTics(50 / GetCVar("cl_fatalityspeed"))
 
         //////////////////////////////////////////////////////
@@ -3147,17 +3147,17 @@ NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         BHF1 AAABCDEF 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-        BHF1 G 3 A_PlaySound("weapons/gswing")
+        BHF1 G 3 A_StartSound("weapons/gswing")
         BHF1 HIJKLLLMN 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-        BHF1 O 3 A_PlaySound("baron/pain")
+        BHF1 O 3 A_StartSound("baron/pain")
         NULL AAAAAAA 0 A_CustomMissile ("Green_Blood", 35, 0, random (0, 180), 2, random (0, 180))
-        NULL A 0 A_PlaySound("misc/xdeath4")
+        NULL A 0 A_StartSound("misc/xdeath4")
         BHF1 PQR 3 A_CustomMissile ("Green_Blood", 35, 0, random (0, 360), 2, random (0, 160))
 
-        NULL A 0 A_PlaySound("misc/xdeath4")
-        NULL A 0 A_PlaySound("misc/xdeath3")
-        NULL A 0 A_PlaySound("misc/xdeath2")
-        NULL A 0 A_PlaySound("misc/xdeath1")
+        NULL A 0 A_StartSound("misc/xdeath4")
+        NULL A 0 A_StartSound("misc/xdeath3")
+        NULL A 0 A_StartSound("misc/xdeath2")
+        NULL A 0 A_StartSound("misc/xdeath1")
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		NULL AAAA 0 A_CustomMissile ("MuchBlood2Green", 50, 0, random (0, 360), 2, random (0, 160))
 		NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -3199,11 +3199,11 @@ NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         //////////////////////////////////////////////////////
 		HKF1 AB 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 A_CustomMissile ("GoreSound", 22, 0, random (0, 360), 2, random (0, 160))
-        HKF1 C 6 A_PlaySound("PSXDPN")
+        HKF1 C 6 A_StartSound("PSXDPN")
 		NULL AAA 0 A_CustomMissile ("Green_Blood", 45, 0, random (0, 360), 2, random (0, 160))
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		HKF1 C 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("imp/melee")
+		NULL A 0 A_StartSound("imp/melee")
 		HKF1 C 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
         
 		 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
@@ -3234,14 +3234,14 @@ NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
         
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
-        NULL A 0 A_PlaySound("weapons/gswing", 1)
-		NULL A 0 A_PlaySound("PSXDPN")
+        NULL A 0 A_StartSound("weapons/gswing", 1)
+		NULL A 0 A_StartSound("PSXDPN")
 		HKF3 ABC 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 SetPlayerProperty(0,1,0)
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-		NULL A 0 A_PlaySound("PSXDPN", 2)
+		NULL A 0 A_StartSound("PSXDPN", 2)
 		HKF3 D 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
-         NULL A 0 A_PlaySound("knight/death")
+         NULL A 0 A_StartSound("knight/death")
 
 		 NULL AAAAAAA 0 A_CustomMissile ("XDeath1Green", 50, 0, random (0, 360), 2, random (0, 160))
          NULL AA 0 A_CustomMissile ("Green_Blood", 50, 0, random (0, 360), 2, random (0, 160))
@@ -3249,9 +3249,9 @@ NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		 NULL A 0 A_CustomMissile ("XDeathHellKnightArm", 40, 0, 90, 2, random (0, 20))
         HKF3 EFGG 6 A_CustomMissile ("Green_Blood", 40, 0, random (0, 360), 2, random (0, 160))
 		
-		TNT1 A 0 A_PlaySound("NECK_BRK")
+		TNT1 A 0 A_StartSound("NECK_BRK")
 		HKF3 H 11 A_SetTics(11 / GetCVar("cl_fatalityspeed"))
-        TNT1 A 0 A_PlaySound("gore/headshot")
+        TNT1 A 0 A_StartSound("gore/headshot")
 		 NULL AAAAAAA 0 A_CustomMissile ("XDeath1Green", 50, 0, random (0, 360), 2, random (0, 160))
          NULL AA 0 A_CustomMissile ("Green_Blood", 50, 0, random (0, 360), 2, random (0, 160))
          NULL AA 0 A_CustomMissile ("Muchblood2Green", 50, 0, random (0, 360), 2, random (0, 160))
@@ -3274,20 +3274,20 @@ FatalityHK2:
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
 		HKF2 A 5 A_SetTics(5 / GetCVar("cl_fatalityspeed")) 
-		HKF2 A 0 A_PlaySound("player/cyborg/fist",8)
+		HKF2 A 0 A_StartSound("player/cyborg/fist", 8)
 		HKF2 B 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 SetPlayerProperty(0,1,0)
-		NULL A 0 A_PlaySound("PSXDPN")
+		NULL A 0 A_StartSound("PSXDPN")
 		
 		HKF2 DEF 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-		TNT1 A 0 A_PlaySound("NECK_BRK")
+		TNT1 A 0 A_StartSound("NECK_BRK")
 		 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		HKF2 GH 5 A_SetTics(5 / GetCVar("cl_fatalityspeed"))
-         NULL A 0 A_PlaySound("PSXDPN")
+         NULL A 0 A_StartSound("PSXDPN")
 		 HKF2 IJI 4 A_SetTics(4 / GetCVar("cl_fatalityspeed"))
-		TNT1 A 0 A_PlaySound("NECK_BRK")
+		TNT1 A 0 A_StartSound("NECK_BRK")
 		 HKF2 JIJIJ 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-        TNT1 A 0 A_PlaySound("gore/headshot")
+        TNT1 A 0 A_StartSound("gore/headshot")
 
 		 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 		 NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
@@ -3324,7 +3324,7 @@ FatalityHK2:
         ARF1 ABABABABABABAB 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		NULL A 0 A_SpawnItem("Spark_UpOnce",0,60)
 		ARF1 CD 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("baby/death")
+		NULL A 0 A_StartSound("baby/death")
 		ARF1 EFFFF 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		ARF1 GGHHI 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
@@ -3359,11 +3359,11 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
 		ARF2 A 6 A_SetTics(6 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("grunt/pain")
+		NULL A 0 A_StartSound("grunt/pain")
 		ARF2 B 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
         ARF2 BIBIBI 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("baby/death")
+		NULL A 0 A_StartSound("baby/death")
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
@@ -3397,7 +3397,7 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
         //////////////////////////////////////////////////////
         AVF1 A 1 A_SetTics(1 / GetCVar("cl_fatalityspeed"))
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
-        AVF1 A 1 A_PlaySound("vile/pain")
+        AVF1 A 1 A_StartSound("vile/pain")
         AVF1 A 20 A_SetTics(20 / GetCVar("cl_fatalityspeed"))
 
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
@@ -3410,7 +3410,7 @@ NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(582, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
 
-        AVF1 A 1 A_PlaySound("vile/Death")
+        AVF1 A 1 A_StartSound("vile/Death")
         AVF1 BCDEEEFGHHH 5 A_CustomMissile ("PlayerFlyingBlood", 60, 0, random (0, 360), 2, random (0, 160))
 		AVF1 IJKLM 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
 		NULL AAAA 0 A_CustomMissile ("XDeath1", 5, 0, random (0, 360), 2, random (0, 160))
@@ -3419,7 +3419,7 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(581, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(582, 0, 0, 0, 0)
 NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
-NULL A 0 A_PlaySound("CLAP")
+NULL A 0 A_StartSound("CLAP")
 NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0)
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		AVF1 N 30 A_SetTics(30 / GetCVar("cl_fatalityspeed"))
@@ -3431,7 +3431,7 @@ XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0
 		 NULL AAAAAAAAAA 0 A_CustomMissile ("PlayerFlyingBlood", 50, 0, random (0, 360), 2, random (0, 160))
 		 NULL A 0 A_SpawnItemEx("FootStep5", 0, 0, 40, 0, 0)
 		AVF1 STUUUUVVVV 2 A_SetTics(2 / GetCVar("cl_fatalityspeed"))
-		NULL A 0 A_PlaySound("TAUNT")
+		NULL A 0 A_StartSound("TAUNT")
 		AVF1 V 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
 		AVF1 WXWX 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
 		AVF1 V 10 A_SetTics(10 / GetCVar("cl_fatalityspeed"))
@@ -3452,7 +3452,7 @@ FatalityPE:
 		NULL A 0 ACS_Execute(acsFatality, 0)
         //////////////////////////////////////////////////////
         PA1F A 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
-		FATF E 0 A_PlaySound("demon/pain")
+		FATF E 0 A_StartSound("demon/pain")
 		XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 		PA1F A 9 A_SetTics(9 / GetCVar("cl_fatalityspeed"))
 		
@@ -3464,11 +3464,11 @@ FatalityPE:
 		
         NULL AAAAAA 0 A_CustomMissile ("Blood", 55, 0, random (0, 180), 2, random (0, 180))
         NULL AA 0 A_CustomMissile ("XDeath1", 55, 0, random (0, 360), 2, random (0, 160))
-        NULL A 0 A_PlaySound("demon/pain")
+        NULL A 0 A_StartSound("demon/pain")
 		
 		PA1F BCDEEEEEFGHI 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		
-		NULL A 0 A_PlaySound("demon/pain")
+		NULL A 0 A_StartSound("demon/pain")
         
 		PA1F JKKKK 3 A_SetTics(3 / GetCVar("cl_fatalityspeed"))
 		
@@ -3565,9 +3565,9 @@ FatalityPE:
         //////////////////////////////////////////////////////
         01CB A 3
 		NULL A 0 SetPlayerProperty(0,1,0)
-		NULL A 0 A_PlaySound("grunt/death")
+		NULL A 0 A_StartSound("grunt/death")
 		01CB BCCCC 3 SetPlayerProperty(0,1,0)
-		NULL A 0 A_PlaySound("misc/xdeath1")
+		NULL A 0 A_StartSound("misc/xdeath1")
 		01CB D 3
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -3597,9 +3597,9 @@ NULL A 0 ACS_Execute(583, 0, 0, 0, 0)
         //////////////////////////////////////////////////////
         02CB A 3
 		NULL A 0 SetPlayerProperty(0,1,0)
-		NULL A 0 A_PlaySound("grunt/death")
+		NULL A 0 A_StartSound("grunt/death")
 		02CB BCCCC 3 SetPlayerProperty(0,1,0)
-		NULL A 0 A_PlaySound("misc/xdeath1")
+		NULL A 0 A_StartSound("misc/xdeath1")
 		02CB D 3
 XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0, 160))
 NULL A 0 ACS_Execute(580, 0, 0, 0, 0)
@@ -3694,7 +3694,7 @@ XXXX A 0 A_CustomMissile ("ShakeShakeShake", 1, 0, random (0, 360), 2, random (0
 SFZM A 6
 SFZM B 6
 SFZM C 14
-TNT1 A 0 A_Playsound("NeckSnap")
+TNT1 A 0 A_StartSound("NeckSnap")
 SFZM D 16
 
         //////////////////////////////////////////////////////
@@ -3714,7 +3714,7 @@ SFZM D 16
 SFSZ A 8
 SFSZ B 8
 SFSZ C 16
-TNT1 A 0 A_Playsound("NeckSnap")
+TNT1 A 0 A_StartSound("NeckSnap")
 SFSZ D 16
 
         //////////////////////////////////////////////////////
@@ -3732,7 +3732,7 @@ SFSZ D 16
         //////////////////////////////////////////////////////
 SFCG A 8
 SFCG B 8
-TNT1 A 0 A_Playsound("NeckSnap")
+TNT1 A 0 A_StartSound("NeckSnap")
 SFCG C 14
 
         //////////////////////////////////////////////////////
@@ -3751,7 +3751,7 @@ SFCG C 14
         //////////////////////////////////////////////////////
 SFIM A 8
 SFIM B 8
-TNT1 A 0 A_Playsound("NeckSnap")
+TNT1 A 0 A_StartSound("NeckSnap")
 SFIM C 16
 SFIM D 16
 
@@ -3771,7 +3771,7 @@ SFIM D 16
         //////////////////////////////////////////////////////
 SFNZ A 8
 SFNZ B 8
-TNT1 A 0 A_Playsound("NeckSnap")
+TNT1 A 0 A_StartSound("NeckSnap")
 SFNZ C 16
 
         //////////////////////////////////////////////////////
@@ -3930,14 +3930,14 @@ SFNZ C 16
 		 
     Salutes1:
 	    NULL A 0
-		NULL A 0 A_PlaySound ("DSSALUTE")
+		NULL A 0 A_StartSound("DSSALUTE")
         MWAV BCDEFEFDCB 7
 		NULL A 0 A_TakeInventory("Salute1",1)
         Goto StandstillLoop
 
     Salutes2:
 		NULL A 0
-		NULL A 0 A_PlaySound ("DSSALUTE")
+		NULL A 0 A_StartSound("DSSALUTE")
         MWAV IJK 4
 		MWAV LMNNML 3
 		MWAV LMNNML 3
