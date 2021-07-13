@@ -64,6 +64,17 @@ OptionMenu "TiltPlusPlusMenu"
 }
 
 
+OptionValue "ImpReplacer"
+{
+	0, "Zero"
+	64, "25%"
+	128, "50%"
+	192, "75%"
+	256, "100%"
+	
+}
+
+
 OptionValue "YesOrNo"
 {
 	0, "No"
@@ -679,7 +690,8 @@ OptionMenu "MonsterSpawns"
 	
 	Option "No Dark Variants", "pb_NoDarkImps", "YesOrNo"
 	StaticText " "
-	
+	Option "Replace Imps with Zombies:", "PB_ImpReplacer","ImpReplacer"
+	StaticText " "
 	StaticText "---------------Pinky Demon Variants---------------"
 	StaticText " "
 	Option "No Blood Demons", "pb_NoBloodDemon", "YesOrNo"
